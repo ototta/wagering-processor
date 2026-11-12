@@ -11,11 +11,9 @@ async function bootstrap() {
   const migrationOrm = await MikroORM.init(mikroOrmConfig);
 
   try {
-    const migrations = await migrationOrm.getMigrator().up();
+    const migrations = await migrationOrm.migrator.up();
 
-    console.log(
-      `Migrations executadas: ${migrations.length}`,
-    );
+    console.log(`Migrations executadas: ${migrations.length}`);
   } finally {
     await migrationOrm.close(true);
   }
